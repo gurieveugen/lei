@@ -9,15 +9,6 @@ define('TDU', get_bloginfo('template_url'));
 add_theme_support( 'automatic-feed-links' );
 add_theme_support( 'html5', array( 'search-form', 'comment-form', 'comment-list' ) );
 
-register_sidebar(array(
-	'id' => 'right-sidebar',
-	'name' => 'Right Sidebar',
-	'before_widget' => '<div class="widget %2$s" id="%1$s">',
-	'after_widget' => '</div>',
-	'before_title' => '<h3>',
-	'after_title' => '</h3>'
-));
-
 add_theme_support( 'post-thumbnails' );
 //set_post_thumbnail_size( 604, 270, true );
 add_image_size( 'post-thumbnail', 270, 9999, false );
@@ -148,3 +139,174 @@ function new_excerpt_more( $more ) {
 	return '[....]';
 }
 add_filter('excerpt_more', 'new_excerpt_more');
+
+// ==============================================================
+// REQUIRE
+// ==============================================================
+require_once 'includes/__.php';
+require_once 'includes/widgets/WidgetImageBox.php';
+
+// ==============================================================
+// Control Collections
+// ==============================================================
+$ccollection_contacts = new Controls\ControlsCollection(
+	array(		
+		new Controls\Textarea(
+			'Address', 
+			array(
+				'default-value' => '2 Corbusier Place<br>Balcatta, WA 6021',
+				'description'   => 'Your address'
+			), 
+			array('placeholder' => 'Enter your address')
+		),
+		new Controls\Text(
+			'Phone', 
+			array(
+				'default-value' => '08 9240 6066',
+				'description'   => 'Contact phone'
+			), 
+			array('placeholder' => 'Enter your contact phone')
+		),
+		new Controls\Text(
+			'Email', 
+			array(
+				'default-value' => 'mail@leiconnotley.com.au',
+				'description'   => 'Contact email'
+			), 
+			array('placeholder' => 'Enter your contact email')
+		),
+	)
+);
+
+$ccollection_company_details = new Controls\ControlsCollection(
+	array(		
+		new Controls\Text(
+			'ABN', 
+			array(
+				'default-value' => '95009 213 030',
+				'description'   => 'ABN'
+			), 
+			array('placeholder' => 'Enter your ABN')
+		),
+		new Controls\Text(
+			'Registered Builder Number', 
+			array(
+				'default-value' => '12995',
+				'description'   => 'Registered Builder Number'
+			), 
+			array('placeholder' => 'Enter your Registered Builder Number')
+		),
+		new Controls\Text(
+			'Registered Electrical Contractor', 
+			array(
+				'default-value' => 'EC009399 ',
+				'description'   => 'Registered Electrical Contractor'
+			), 
+			array('placeholder' => 'Enter your Registered Electrical Contractor')
+		),
+		new Controls\Textarea(
+			'Accreditations', 
+			array(
+				'default-value' => 'ISO 9001 <br> ISO 14001 <br> AS/NZS 4801 <br> Bureau Veritas Certification', 
+				'description'   => 'Accreditations'
+			), 
+			array('placeholder' => 'Enter your Accreditations')
+		),
+	)
+);
+
+$ccollection_logos = new Controls\ControlsCollection(
+	array(		
+		new Controls\Media(
+			'First logo'
+		),
+		new Controls\Text(
+			'First logo URL', 
+			array(
+				'default-value' => 'http://www.google.com',
+				'description'   => 'First logo URL'
+			), 
+			array('placeholder' => 'URL')
+		),
+		new Controls\Media(
+			'Second logo'
+		),
+		new Controls\Text(
+			'Second logo URL', 
+			array(
+				'default-value' => 'http://www.google.com',
+				'description'   => 'Second logo URL'
+			), 
+			array('placeholder' => 'URL')
+		),
+	)
+);
+// ==============================================================
+// Sections
+// ==============================================================
+$section_contacts = new Admin\Section(
+	'Contacts settings', 
+	array(
+		'prefix'   => 'sc_',
+		'tab_icon' => 'fa-book'
+	), 
+	$ccollection_contacts
+);
+
+$section_company_details = new Admin\Section(
+	'Company details', 
+	array(
+		'prefix'   => 'cd_',
+		'tab_icon' => 'fa-info'
+	), 
+	$ccollection_company_details
+);
+
+$section_logos = new Admin\Section(
+	'Logos', 
+	array(
+		'prefix'   => 'cd_',
+		'tab_icon' => 'fa-picture-o'
+	), 
+	$ccollection_logos
+);
+// ==============================================================
+// Pages
+// ==============================================================
+$page_settings = new Admin\Page(
+	'Theme setting', 
+	array('parent_page' => 'options-general.php'), 
+	array(
+		$section_contacts,
+		$section_company_details,
+		$section_logos
+	)
+);
+// ==============================================================
+// Actions and filters
+// ==============================================================
+add_action('widgets_init', 'widgetsInit');
+//                    __  __              __    
+//    ____ ___  ___  / /_/ /_  ____  ____/ /____
+//   / __ `__ \/ _ \/ __/ __ \/ __ \/ __  / ___/
+//  / / / / / /  __/ /_/ / / / /_/ / /_/ (__  ) 
+// /_/ /_/ /_/\___/\__/_/ /_/\____/\__,_/____/  
+//                                              
+/**
+ * Register custom sidebar
+ */
+function widgetsInit()
+{
+	register_sidebar(
+		array(
+			'id'            => 'footer-sidebar',
+			'name'          => 'Footer sidebar',
+			'before_widget' => '<div class="b-block %2$s" id="%1$s">',
+			'after_widget'  => '</div>',
+			'before_title'  => '<h3>',
+			'after_title'   => '</h3>'
+		)
+	);
+
+	register_widget('WidgetImageBox');
+}

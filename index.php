@@ -7,7 +7,7 @@
 <?php get_header(); ?>
 
 <div class="visual inner" style="background-image: url(<?php echo TDU; ?>/images/img-visual.jpg);"></div>
-<div class="center-wrap">
+<div class="center-wrap bottom-space">
 	<?php include("loop.php"); ?>
 </div>
 

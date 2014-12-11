@@ -1,8 +1,6 @@
 <?php
-/**
- * @package WordPress
- * @subpackage Base_Theme
- */
+$options = \__::getOptions(array('sc_phone', 'sc_email'));
+extract($options);
 ?>
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
@@ -36,8 +34,8 @@
 					<div class="center-wrap">
 						<strong class="logo"><a href="<?php echo home_url('/'); ?>" title="<?php echo esc_attr(get_bloginfo('name', 'display')); ?>" rel="home"><img src="<?php echo TDU; ?>/images/logo.png" alt="<?php bloginfo('name'); ?>"></a></strong>
 						<ul class="contact-list">
-							<li>Phone 08 9240 6066</li>
-							<li><a href="mailto:">Email</a></li>
+							<li>Phone <?php echo $sc_phone; ?></li>
+							<li><a href="mailto:<?php echo $sc_email; ?>">Email</a></li>
 						</ul>
 					</div>
 				</div>
