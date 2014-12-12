@@ -287,19 +287,19 @@ ol{
 	padding:0 0 14px 10px;
 }
 dl, p, h1, h2, h3, h4, h5, h6, applet, embed, object, frameset{
-	margin:0 0 14px;
+	margin:0 0 22px;
 }
 .alignleft{
 	float: left;
-	margin: 0 10px 14px 0;
+	margin: 0 10px 22px 0;
 }
 .alignright{
 	float: right;
-	margin: 0 0 14px 10px;
+	margin: 0 0 22px 10px;
 }
 .aligncenter{
 	display: block;
-	margin: 0 auto 14px;
+	margin: 0 auto 22px;
 }
 .text-left{
 	text-align: left;
@@ -625,9 +625,10 @@ dl, p, h1, h2, h3, h4, h5, h6, applet, embed, object, frameset{
 .main-nav a:hover{
 	text-decoration: none;
 	font-weight: bold;
+	text-shadow: 0 0 1px #fff;
 }
 .header-s-content{
-	margin: 0 0 20px;
+	margin: 0 0 10px;
 }
 .header-s-content h1{
 	float: left;
@@ -667,8 +668,7 @@ dl, p, h1, h2, h3, h4, h5, h6, applet, embed, object, frameset{
 .btn-view:hover{
 	text-decoration: none;
 }
-.section-content .s-content{
-	margin: 0 0 20px;
+#toggle-content{
 	display: none;
 }
 .b-blocks{
@@ -687,8 +687,7 @@ dl, p, h1, h2, h3, h4, h5, h6, applet, embed, object, frameset{
 .b-block .image img{
 	display: block;
 }
-.b-block .image span{
-	/* font: 16px/1.2 'FuturaMedium', Helvetica, sans-serif; */
+.b-block .image .more{
 	font-size: 16px;
 	line-height: 1.2;
 	color: #fff;
@@ -699,12 +698,35 @@ dl, p, h1, h2, h3, h4, h5, h6, applet, embed, object, frameset{
 	left: 0;
 	right: 0;
 	margin-top: -20px;
-	display: none;
+	z-index: 3;
+	opacity: 0;
+	filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+	-webkit-transition: all 400ms;
+	-o-transition: all 400ms;
+	transition: all 400ms;
 }
-.b-block .image:hover span{
-	display: block;
+.b-block .mask{
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	background: #0456a4;
+	opacity: 0;
+	filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+	-webkit-transition: all 400ms;
+	-o-transition: all 400ms;
+	transition: all 400ms;
 }
-.b-block .image span:after{
+.b-block .image:hover .mask{
+	opacity: 0.7;
+	filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=70);
+}
+.b-block .image:hover .more{
+	opacity: 1;
+	filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+}
+.b-block .image .more:after{
 	content: '';
 	display: block;
 	background: url(images/ico-plus.png) no-repeat;
@@ -781,10 +803,10 @@ dl, p, h1, h2, h3, h4, h5, h6, applet, embed, object, frameset{
 	margin: 0;
 	float: left;
 }
-.title-page-row a{
+.link-back{
 	float: right;
 	text-transform: uppercase;
-	font: bold 20px/1.2 'FuturaMedium', Helvetica, sans-serif;
+	font: bold 16px/1.2 'FuturaMedium', Helvetica, sans-serif;
 }
 .bottom-space{
 	padding-bottom: 30px;

@@ -11,6 +11,7 @@ $options = \__::getOptions(
 );
 extract($options);
 ?>
+		</div> <!-- #main -->
 		<footer id="footer" style="background-image: url(<?php echo TDU; ?>/images/bg-footer.jpg);">
 			<div class="center-wrap cf">
 				<div class="column">
@@ -42,7 +43,7 @@ extract($options);
 				</div>
 			</div>
 		</footer>
-	</div>
+	</div><!-- #wrapper -->
 <?php wp_footer(); ?>
 </body>
 </html>

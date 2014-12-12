@@ -20,11 +20,11 @@ if(has_post_thumbnail())
 	<article class="content-page">
 		<div class="title-page-row cf">
 			<h1 class="title-page"><?php the_title(); ?></h1>
-			<a href="<?php echo get_permalink(8); ?>">&lt; Back to Projects</a>
 		</div>
-		<div class="s-content content-style">
+		<div class="s-content content-style cf">
 			<?php the_content(); ?>
 			<?php wp_link_pages( array( 'before' => '<div class="page-links"><span class="page-links-title">' . __( 'Pages:', 'theme' ) . '</span>', 'after' => '</div>', 'link_before' => '<span>', 'link_after' => '</span>' ) ); ?>
+			<a href="<?php echo get_permalink(8); ?>" class="link-back">&lt; Back to Projects</a>
 		</div>
 	</article>
 	<?php endif; ?>

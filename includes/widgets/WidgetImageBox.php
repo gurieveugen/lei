@@ -29,7 +29,8 @@ class WidgetImageBox extends WP_Widget{
 		?>
 		<a href="<?php echo $url; ?>" class="image">
 			<img src="<?php echo $image; ?>" alt="Image">
-			<span>Click for more</span>
+			<span class="more">Click for more</span>
+			<span class="mask"></span>
 		</a>
 		<?php echo $args['before_title']; ?>
 			<a href="<?php echo $url; ?>"><?php echo $title; ?></a>

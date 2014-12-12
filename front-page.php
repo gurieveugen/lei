@@ -18,7 +18,7 @@
 			<h1 class="title-page">Welcome to Leiconnotley</h1>
 			<a href="#" class="btn-view right open" id="btn-view-content">view information</a>
 		</header>
-		<div class="s-content">
+		<div id="toggle-content" class="s-content cf">
 			<p>leicon notley is a broad-based, professional engineering construction company with a particular competence in piping, pumping, pipelines and borefields, water supply and associated civil, mechanical, electrical and controls works.</p>
 		</div>
 	</article>
@@ -26,21 +26,24 @@
 		<div class="b-block">
 			<a href="#" class="image">
 				<img src="<?php echo TDU; ?>/images/img-1.jpg" alt="">
-				<span>Click for more</span>
+				<span class="more">Click for more</span>
+				<span class="mask"></span>
 			</a>
 			<h3><a href="#">Projects</a></h3>
 		</div>
 		<div class="b-block">
 			<a href="#" class="image">
 				<img src="<?php echo TDU; ?>/images/img-2.jpg" alt="">
-				<span>Click for more</span>
+				<span class="more">Click for more</span>
+				<span class="mask"></span>
 			</a>
 			<h3><a href="#">Our Team</a></h3>
 		</div>
 		<div class="b-block">
 			<a href="#" class="image">
 				<img src="<?php echo TDU; ?>/images/img-3.jpg" alt="">
-				<span>Click for more</span>
+				<span class="more">Click for more</span>
+				<span class="mask"></span>
 			</a>
 			<h3><a href="#">Accreditations</a></h3>
 		</div>
