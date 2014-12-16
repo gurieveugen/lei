@@ -120,12 +120,6 @@ function theme_entry_meta() {
 		);
 	}
 }
-function scripts_method() {
-	wp_deregister_script( 'jquery' );
-	wp_register_script( 'jquery', TDU.'/js/jquery-1.11.1.min.js');
-	wp_enqueue_script( 'jquery' );
-}
-add_action('wp_enqueue_scripts', 'scripts_method');
 
 // register tag [template-url]
 function template_url($text) {
@@ -286,6 +280,9 @@ $page_settings = new Admin\Page(
 // Actions and filters
 // ==============================================================
 add_action('widgets_init', 'widgetsInit');
+add_action('wp_enqueue_scripts', 'scriptsAndStyles');
+add_filter('wp_get_attachment_link', 'addLightbox', 10, 6);
+
 //                    __  __              __    
 //    ____ ___  ___  / /_/ /_  ____  ____/ /____
 //   / __ `__ \/ _ \/ __/ __ \/ __ \/ __  / ___/
@@ -309,4 +306,33 @@ function widgetsInit()
 	);
 
 	register_widget('WidgetImageBox');
+}
+
+/**
+ * Add scripts and styles
+ */
+function scriptsAndStyles() 
+{
+	// ==============================================================
+	// Scripts
+	// ==============================================================
+	wp_deregister_script( 'jquery' );
+	wp_register_script( 'jquery', TDU.'/js/jquery-1.11.1.min.js');
+	wp_enqueue_script( 'jquery' );
+	wp_enqueue_script('lightbox', TDU.'/js/lightbox.min.js', array('jquery'));
+
+	// ==============================================================
+	// Styles
+	// ==============================================================
+	wp_enqueue_style('lightbox', TDU.'/css/lightbox.css');
+}
+
+
+function addLightbox( $attachment_link, $id, $size, $permalink, $icon, $text ) 
+{
+	if(strpos($attachment_link , 'a href') != false && strpos( $attachment_link , 'img') != false)
+	{
+		$attachment_link = str_replace( 'a href' , 'a data-lightbox="group" href' , $attachment_link );
+	}
+	return $attachment_link;
 }

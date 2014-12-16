@@ -8,10 +8,6 @@
 <?php get_header(); ?>
 <?php
 $image = TDU.'/images/img-visual.jpg';
-if(has_post_thumbnail())
-{
-	$image = \__::getThumbnailURL(get_the_id());
-}
 ?>
 
 <div class="visual inner" style="background-image: url(<?php echo $image; ?>);"></div>
